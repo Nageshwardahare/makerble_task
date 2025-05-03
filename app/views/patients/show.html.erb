@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6">
+        <div class="card shadow-sm">
+          <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Patient Details</h5>
+          </div>
+  
+          <div class="card-body">
+            <p><strong>Full Name:</strong> <%= @patient.full_name || 'N/A' %></p>
+            <p><strong>Age:</strong> <%= @patient.age || 'N/A' %></p>
+            <p><strong>Diagnosis:</strong> <%= @patient.diagnosis || 'N/A' %></p>
+            <p><strong>City:</strong> <%= @patient.city.presence || 'N/A' %></p>
+            <p><strong>Address:</strong> <%= @patient.address.presence || 'N/A' %></p>
+          </div>
+  
+          <div class="card-footer text-end">
+            <% if can?(:update, @patient) %> 
+              <%= link_to 'Edit', edit_patient_path(@patient), class: "btn btn-warning me-2" %>
+            <% end %>
+            <%= link_to 'Back', patients_path, class: "btn btn-secondary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

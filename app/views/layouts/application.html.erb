@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Hospital Portal" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+
+  </head>
+
+  <body>
+    <% if user_signed_in? %>
+    <div class="position-sticky top-0 z-3 bg-white shadow-sm py-2 d-flex justify-content-end align-items-center gap-3 mb-5" style="z-index: 1030;">
+      
+      <!-- Role -->
+      <p class="mb-0 text-secondary">
+        Logged in as 
+        <% if current_user.admin? %>
+          <strong class="text-primary">Admin</strong>
+        <% elsif current_user.doctor? %>
+          <strong class="text-success">Doctor</strong>
+        <% elsif current_user.receptionist? %>
+          <strong class="text-warning">Receptionist</strong>
+        <% else %>
+          <strong class="text-muted">User</strong>
+        <% end %>
+      </p>
+  
+      <!-- Email -->
+      <p class="mb-0 text-secondary">
+        Email: <strong><%= current_user.email %></strong>
+      </p>
+  
+      <!-- Logout Button -->
+      <%= form_with url: destroy_user_session_path, method: :delete, local: true, html: { class: 'd-inline mx-3' } do %>
+        <%= submit_tag "Logout", data: { confirm: "Are you sure you want to logout?" }, class: "btn btn-outline-danger btn-sm" %>
+      <% end %>
+    </div>
+
+    <div class="container text-center">
+      <% if flash.any? %>
+          <% flash.each do |key, message| %>
+            <div class="alert alert-<%= key == 'notice' ? 'success' : 'danger' %> flash-message">
+              <%= message %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  
+    <%= yield %>
+  </body>
+</html>

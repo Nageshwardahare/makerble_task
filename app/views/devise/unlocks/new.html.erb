@@ -1,0 +1,21 @@
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= f.label :full_name %><br />
+  <%= f.text_field :full_name, autofocus: true %>
+
+  <%= f.label :DOB %><br />
+  <%= f.number_field :dob %>
+
+  <%= f.label :email %><br />
+  <%= f.email_field :email %>
+
+  <%= f.label :password %><br />
+  <%= f.password_field :password %>
+
+  <%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %>
+
+  <%= f.label :role %><br />
+  <%= f.select :role, User.roles.map { |k,v| [k.humanize, k] }, prompt: "Select Role" %>
+
+  <%= f.submit "Sign up" %>
+<% end %>
