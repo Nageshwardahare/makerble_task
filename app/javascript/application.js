@@ -1,8 +1,6 @@
 import "@hotwired/turbo-rails";
 import "chartkick"
 import "Chart.bundle"
-import "@rails/ujs"
-Rails.start()
 
 
 document.addEventListener("turbo:load", () => {
