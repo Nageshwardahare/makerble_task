@@ -61,10 +61,12 @@
                   <% end %>
 
                   <% if can?(:destroy, patient) %>
-                    <%= link_to 'Delete', patient_path(patient), method: :delete, 
-                                data: { confirm: 'Are you sure you want to delete this patient?' }, 
-                                class: 'btn btn-danger btn-sm' %>
-                  <% end %>
+                  <%= button_to 'Delete', patient_path(patient), 
+                      method: :delete,
+                      data: { confirm: 'Are you sure you want to delete this patient?' }, 
+                      class: 'btn btn-danger btn-sm' %>
+                <% end %>
+                
                 </div>
               </td>
             </tr>
